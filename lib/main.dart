@@ -28,12 +28,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _bloc = CounterBloc();
+  //final _bloc = CounterBloc();
+  CounterBloc _counterBloc = new CounterBloc(initialCount: 0);
 
   @override
   void dispose() {
     super.dispose();
-    _bloc.dispose();
+    _counterBloc.dispose();
   }
 
   @override
@@ -44,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Center(
             child: StreamBuilder(
-                stream: _bloc.counter,
+                stream: _counterBloc.counterObservable,
                 initialData: 0,
                 builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
                   return Column(
@@ -63,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             FloatingActionButton(
-              onPressed: () => _bloc.counterEventSink.add(IncrementEvent()),
+              onPressed: () => _counterBloc.increment(),
               tooltip: 'Decrement',
               child: Icon(Icons.remove),
             ),
@@ -71,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 20.0,
             ),
             FloatingActionButton(
-              onPressed: () => _bloc.counterEventSink.add(DecrementEvent()),
+              onPressed: () => _counterBloc.decrement(),
               tooltip: 'Increment',
               child: Icon(Icons.add),
             ),

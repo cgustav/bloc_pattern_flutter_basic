@@ -1,3 +1,27 @@
+///About RxDart
+///
+///Dart Programming Language already have stream
+///functionality and RxDart just extends that
+///concept and provides new abstractions which
+///slightly improve whats already available in
+///the language
+///
+///RxDart Provides two essential abstractions:
+/// - Observable
+/// - Subjects
+///
+///
+/// Observable is like a stream. Except it adds
+/// methods and a few other features. So whenever
+/// we are talking about streams we can replace this
+/// notion with observable and it mean basically the
+/// same thing.
+///
+/// Subject is something like a custom controller but
+/// it provides some additional things. Whenever we
+/// use streamController we can now replace that with
+/// subjects
+
 import 'package:rxdart/rxdart.dart';
 
 ///This is the class which imports the rxDart library

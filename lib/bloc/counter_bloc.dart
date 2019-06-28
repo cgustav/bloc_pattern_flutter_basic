@@ -17,10 +17,21 @@
 /// notion with observable and it mean basically the
 /// same thing.
 ///
-/// Subject is something like a custom controller but
-/// it provides some additional things. Whenever we
-/// use streamController we can now replace that with
-/// subjects
+/// Subjects are the StreamController of Rx and as you
+/// can imagine RxDart implements them using a StreamController
+/// under the hood.
+///
+/// - You can listen() directly on a Subject without accessing
+///   a Stream property.
+///
+/// - More than just one subscription is possible and all
+///   listening parties will get the same data at the same time.
+///
+/// - There are three flavours of Subjects that are best explained
+///   with examples:
+///     - PublishSubjects: They behave like StreamControllers besides
+///       that multiple listeners are allowed:
+///
 
 import 'package:rxdart/rxdart.dart';
 
@@ -36,6 +47,9 @@ class CounterBloc {
   ///initialCount which was set in the CounterBloc constructor.
   ///
   int initialCount = 0;
+
+  ///Instead of publishing the whole StreamController, we just publish
+  ///its Stream property.
   BehaviorSubject<int> _subjectCounter;
 
   CounterBloc({this.initialCount}) {
